@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6xaym26k6b2x"]
+
+[ext_resource type="Script" path="res://src/ui/gameover_screen.gd" id="1_k0sho"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k0sho")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 375.0
+offset_top = 212.0
+offset_right = 703.0
+offset_bottom = 264.0
+text = "Gameover"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 460.0
+offset_top = 357.0
+offset_right = 605.0
+offset_bottom = 414.0
+text = "Retry"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
