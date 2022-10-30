@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://buf372q2bwhew"]
+
+[ext_resource type="FontFile" uid="uid://dhnbw5oo8o7x1" path="res://assets/fonts/PeaberryBase.ttf" id="1_ctb6h"]
+
+[resource]
+default_font = ExtResource("1_ctb6h")

@@ -19,7 +19,8 @@ enum LogType {
 	LOG_INIT = 64,
 	LOG_EXIT = 128,
 	LOG_SCENE = 256,
-	LOG_ALL = 256 + 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1
+	LOG_SOUNDS = 512,
+	LOG_ALL = 512 + 256 + 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1
 };
 
 var log_severity = LogSeverity.LOG_ALL
@@ -66,6 +67,9 @@ func get_type_name(type):
 			return "Exit"
 		LogType.LOG_SCENE:
 			return "Scenes"
+		LogType.LOG_SOUNDS:
+			return "Sounds & Music"
+
 		LogType.LOG_ALL:
 			return "All types"
 		_:

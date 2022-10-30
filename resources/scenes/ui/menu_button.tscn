@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://danag68c0oepm"]
+
+[ext_resource type="Texture2D" uid="uid://d4jlqmty2631s" path="res://assets/images/ui/button2.png" id="1_sa7cn"]
+[ext_resource type="Theme" uid="uid://buf372q2bwhew" path="res://resources/theme/base_theme.tres" id="1_wjqfv"]
+[ext_resource type="Texture2D" uid="uid://ddssnnsyeqd67" path="res://assets/images/ui/button2-press.png" id="3_ef60d"]
+[ext_resource type="Script" path="res://src/ui/menu_button.gd" id="3_rsx1b"]
+[ext_resource type="Texture2D" uid="uid://d1gmmbkfac0we" path="res://assets/images/ui/button2-over.png" id="4_8ia1f"]
+[ext_resource type="AudioStream" uid="uid://c7dc6e5qt0f2n" path="res://assets/sounds/sfx/ui/click.ogg" id="4_ctptw"]
+[ext_resource type="Texture2D" uid="uid://dsg6s5fvoijhm" path="res://assets/images/ui/button2-disabled.png" id="5_bphme"]
+
+[node name="MenuButton" type="TextureButton"]
+offset_left = 54.0
+offset_top = 57.0
+offset_right = 420.0
+offset_bottom = 124.0
+scale = Vector2(0.548175, 0.548175)
+theme = ExtResource("1_wjqfv")
+texture_normal = ExtResource("1_sa7cn")
+texture_pressed = ExtResource("3_ef60d")
+texture_hover = ExtResource("4_8ia1f")
+texture_disabled = ExtResource("5_bphme")
+stretch_mode = 0
+script = ExtResource("3_rsx1b")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -17.0
+offset_right = 64.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Example
+"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ctptw")
+bus = &"ui"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

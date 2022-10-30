@@ -1,12 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnb54ko2rulo0"]
+[gd_scene load_steps=7 format=3 uid="uid://bnb54ko2rulo0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7fqsg"]
+[ext_resource type="PackedScene" uid="uid://covdqevopoa8b" path="res://resources/scenes/ui/ui.tscn" id="2_agso3"]
 [ext_resource type="Script" path="res://src/managers/level.gd" id="2_dfx2f"]
+[ext_resource type="AudioStream" uid="uid://c770trt3m42iv" path="res://assets/sounds/music/menu/menu.wav" id="4_0sljb"]
+[ext_resource type="Script" path="res://src/managers/MusicStream.gd" id="5_o73k1"]
+[ext_resource type="Script" path="res://src/ui/Fps.gd" id="6_71ski"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7fqsg")
 log_level = 15
-log_type = 255
+log_type = 1023
+metadata/_edit_horizontal_guides_ = [-152.0]
+
+[node name="UI" parent="." instance=ExtResource("2_agso3")]
+visible = false
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_dfx2f")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="MusicStream" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_0sljb")
+bus = &"music"
+script = ExtResource("5_o73k1")
+items = {
+"MenuMusic": ExtResource("4_0sljb")
+}
+
+[node name="FxStream" type="AudioStreamPlayer" parent="Sounds"]
+bus = &"fx"
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Fps" type="Label" parent="Hud"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 39.0
+grow_horizontal = 0
+text = "0"
+script = ExtResource("6_71ski")
