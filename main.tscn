@@ -14,10 +14,10 @@ log_type = 1023
 metadata/_edit_horizontal_guides_ = [-152.0]
 
 [node name="UI" parent="." instance=ExtResource("2_agso3")]
-visible = false
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("2_dfx2f")
+current_scene_index = -1
 
 [node name="Sounds" type="Node" parent="."]
 

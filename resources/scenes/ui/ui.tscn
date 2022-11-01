@@ -63,49 +63,78 @@ grow_vertical = 2
 theme = ExtResource("2_71ie5")
 theme_override_styles/panel = SubResource("StyleBoxTexture_85yxa")
 
-[node name="NewGame" parent="Main/Panel" instance=ExtResource("4_blpqc")]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 96.0
-offset_top = -156.971
-offset_right = 462.0
-offset_bottom = -89.9707
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Panel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 12.0
+offset_right = 438.0
+offset_bottom = 509.0
+scale = Vector2(0.74703, 0.74703)
+theme_override_constants/separation = 19
+
+[node name="NewGame" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 366.0
+offset_bottom = 67.0
 grow_vertical = 2
+scale = Vector2(1, 1)
 label = "New game"
 
-[node name="Continue" parent="Main/Panel" instance=ExtResource("4_blpqc")]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 116.0
-offset_right = 462.0
-offset_bottom = 183.0
+[node name="Continue" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 86.0
+offset_right = 366.0
+offset_bottom = 153.0
+scale = Vector2(1, 1)
 label = "Continue"
 
-[node name="Load" parent="Main/Panel" instance=ExtResource("4_blpqc")]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 180.0
-offset_right = 462.0
-offset_bottom = 247.0
+[node name="Load" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 172.0
+offset_right = 366.0
+offset_bottom = 239.0
+scale = Vector2(1, 1)
 label = "Load"
 
-[node name="Settings" parent="Main/Panel" instance=ExtResource("4_blpqc")]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 252.0
-offset_right = 462.0
-offset_bottom = 319.0
+[node name="Save" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+visible = false
+layout_mode = 2
+offset_left = 0.0
+offset_top = 213.0
+offset_right = 366.0
+offset_bottom = 280.0
+scale = Vector2(1, 1)
+label = "Save"
+
+[node name="HowToPlay" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 258.0
+offset_right = 366.0
+offset_bottom = 325.0
+scale = Vector2(1, 1)
+label = "How to play"
+
+[node name="Settings" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 344.0
+offset_right = 366.0
+offset_bottom = 411.0
+scale = Vector2(1, 1)
 label = "Settings"
 
-[node name="Exit" parent="Main/Panel" instance=ExtResource("4_blpqc")]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 364.0
-offset_right = 494.0
-offset_bottom = 431.0
-scale = Vector2(0.383512, 0.383512)
+[node name="Exit" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 430.0
+offset_right = 366.0
+offset_bottom = 497.0
+scale = Vector2(1, 1)
 label = "Exit"
 
 [node name="Settings" type="CenterContainer" parent="."]
@@ -341,8 +370,54 @@ offset_bottom = 80.0
 text = "ShowFps
 "
 
-[connection signal="pressed" from="Main/Panel/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Main/Panel/Exit" to="." method="_on_exit_pressed"]
+[node name="HowToPlay" type="AspectRatioContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Panel" type="Panel" parent="HowToPlay"]
+layout_mode = 2
+offset_left = 252.0
+offset_right = 900.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 1.07
+theme = ExtResource("2_71ie5")
+theme_override_styles/panel = SubResource("StyleBoxTexture_85yxa")
+
+[node name="Label" type="Label" parent="HowToPlay/Panel"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 208.0
+offset_right = 366.0
+offset_bottom = 231.0
+text = "Guide here
+"
+
+[node name="Back" parent="HowToPlay/Panel" instance=ExtResource("4_blpqc")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 212.0
+offset_top = 268.0
+offset_right = 578.0
+offset_bottom = 335.0
+grow_vertical = 2
+script = ExtResource("6_oy6me")
+label = "Back"
+
+[connection signal="pressed" from="Main/Panel/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Main/Panel/VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Main/Panel/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Main/Panel/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Panel/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Settings/Panel/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Settings/Panel/Config/Settings/Sound/Sound/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Sound/Sound/Music/MusicMute" to="." method="_on_music_mute_toggled"]
@@ -353,3 +428,4 @@ text = "ShowFps
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Display/Screen/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Display/Screen/Vsync" to="." method="_on_vsync_toggled"]
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Display/Screen/Fps" to="." method="_on_fps_toggled"]
+[connection signal="pressed" from="HowToPlay/Panel/Back" to="." method="_on_back_pressed"]

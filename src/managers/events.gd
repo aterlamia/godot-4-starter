@@ -1,6 +1,7 @@
 extends Node
 
 signal pauze
+signal game_started
 signal scene_done
 signal scene_started
 signal gameover
@@ -15,6 +16,11 @@ func _ready() -> void:
 	# optionaly add logger
 	self.log = get_node("/root/Log")
 	pass
+
+func on_game_started(state: bool)  -> void: 
+	# optionaly fire log when emitting signal
+	self.log.log_info("Started " + ("True" if state else "False"), log.LogType.LOG_SIGNAL)
+	emit_signal("game_started", state)
 
 func on_pauze(state: bool)  -> void: 
 	# optionaly fire log when emitting signal

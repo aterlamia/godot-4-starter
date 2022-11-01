@@ -19,6 +19,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
+		if !globals.in_game:
+			return
+
 		if event.is_action_pressed("ui_cancel") && !globals.pauzed:
 			events.on_pauze(true)
 			globals.pauzed = true

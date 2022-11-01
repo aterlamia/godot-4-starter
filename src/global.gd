@@ -2,6 +2,12 @@ extends Node
 
 var pauzed: bool = false
 
+var in_game: bool = false :
+	get:
+		return in_game
+	set(value):
+		in_game = value
+
 var config_data: Dictionary = {
 	"fullscreen": false,
 	"vsync": false,
@@ -14,6 +20,17 @@ var config_data: Dictionary = {
 	"volume_fx": 0,
 }
 
+var game_state: Dictionary = {
+	"clicks": 0,
+	"level": 0,
+}
+
+func set_game_data(data, key: String) -> void:
+	if game_state.has(key):
+		game_state[key] = data
+	else:
+		print("Key not found")
+	
 func apply_config(data: Dictionary):
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), data['mute_music'])
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("fx"), data['mute_fx'])
