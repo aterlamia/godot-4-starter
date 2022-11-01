@@ -50,5 +50,6 @@ func set_current_scene(scene_path: String) -> void:
 	var next_level = next_level_resource.instantiate()
 	add_child(next_level)
 	current_scene = next_level
+	current_scene.load()
 	get_node("/root/Events").on_scene_started(current_scene_index)
 	

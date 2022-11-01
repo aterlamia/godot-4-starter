@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://covdqevopoa8b"]
+[gd_scene load_steps=13 format=3 uid="uid://bvno61benbd2u"]
 
 [ext_resource type="Script" path="res://src/ui/ui.gd" id="1_oeybr"]
 [ext_resource type="Texture2D" uid="uid://badrvk5us8ycx" path="res://assets/images/menu/background.png" id="1_v1vsa"]
 [ext_resource type="Theme" uid="uid://buf372q2bwhew" path="res://resources/theme/base_theme.tres" id="2_71ie5"]
-[ext_resource type="Texture2D" uid="uid://cd6hixyh8xkr" path="res://assets/images/ui/panel.png" id="3_g7yqn"]
+[ext_resource type="Texture2D" uid="uid://do8vnsrw301aj" path="res://assets/images/ui/panel.png" id="3_g7yqn"]
 [ext_resource type="PackedScene" uid="uid://danag68c0oepm" path="res://resources/scenes/ui/menu_button.tscn" id="4_blpqc"]
 [ext_resource type="Script" path="res://src/ui/back_button.gd" id="6_oy6me"]
+[ext_resource type="Texture2D" uid="uid://bw2u45ikk3w8k" path="res://assets/images/ui/Panel Border 1.png" id="7_ara5t"]
+[ext_resource type="Texture2D" uid="uid://deeisxhpjaihu" path="res://assets/images/ui/button2.png" id="8_yyk3j"]
+[ext_resource type="Texture2D" uid="uid://bcmy65amm2ukh" path="res://assets/images/ui/button2-press.png" id="9_lnos0"]
+[ext_resource type="Texture2D" uid="uid://c8mto8scmlbgl" path="res://assets/images/ui/button2-over.png" id="10_d06fx"]
+[ext_resource type="Texture2D" uid="uid://ch6bk3n1iym6k" path="res://assets/images/ui/button2-disabled.png" id="11_2sda5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85yxa"]
 texture = ExtResource("3_g7yqn")
@@ -40,67 +45,68 @@ texture = ExtResource("1_v1vsa")
 ignore_texture_size = true
 
 [node name="Main" type="CenterContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -200.0
-offset_right = 200.0
-offset_bottom = 200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Main"]
-custom_minimum_size = Vector2i(400, 400)
-layout_direction = 1
+[node name="Control" type="Control" parent="Main"]
 layout_mode = 2
-offset_right = 400.0
-offset_bottom = 400.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_71ie5")
-theme_override_styles/panel = SubResource("StyleBoxTexture_85yxa")
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main/Panel"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Main/Control"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 12.0
-offset_right = 438.0
-offset_bottom = 509.0
-scale = Vector2(0.74703, 0.74703)
-theme_override_constants/separation = 19
+offset_left = -232.0
+offset_top = -260.0
+offset_right = -192.0
+offset_bottom = -227.0
+scale = Vector2(12.0303, 12.484)
+texture = ExtResource("3_g7yqn")
 
-[node name="NewGame" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Control"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -188.0
+offset_right = 238.0
+offset_bottom = 309.0
+scale = Vector2(0.74703, 0.74703)
+theme_override_constants/separation = 25
+
+[node name="NewGame" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 366.0
-offset_bottom = 67.0
+offset_bottom = 38.0
 grow_vertical = 2
 scale = Vector2(1, 1)
 label = "New game"
 
-[node name="Continue" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="Continue" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
-offset_top = 86.0
+offset_top = 63.0
 offset_right = 366.0
-offset_bottom = 153.0
+offset_bottom = 101.0
 scale = Vector2(1, 1)
 label = "Continue"
 
-[node name="Load" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="Load" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
-offset_top = 172.0
+offset_top = 126.0
 offset_right = 366.0
-offset_bottom = 239.0
+offset_bottom = 164.0
 scale = Vector2(1, 1)
 label = "Load"
 
-[node name="Save" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="Save" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 visible = false
 layout_mode = 2
 offset_left = 0.0
@@ -110,30 +116,30 @@ offset_bottom = 280.0
 scale = Vector2(1, 1)
 label = "Save"
 
-[node name="HowToPlay" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="HowToPlay" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
-offset_top = 258.0
+offset_top = 189.0
 offset_right = 366.0
-offset_bottom = 325.0
+offset_bottom = 227.0
 scale = Vector2(1, 1)
 label = "How to play"
 
-[node name="Settings" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="Settings" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
-offset_top = 344.0
+offset_top = 252.0
 offset_right = 366.0
-offset_bottom = 411.0
+offset_bottom = 290.0
 scale = Vector2(1, 1)
 label = "Settings"
 
-[node name="Exit" parent="Main/Panel/VBoxContainer" instance=ExtResource("4_blpqc")]
+[node name="Exit" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
 offset_left = 0.0
-offset_top = 430.0
+offset_top = 315.0
 offset_right = 366.0
-offset_bottom = 497.0
+offset_bottom = 353.0
 scale = Vector2(1, 1)
 label = "Exit"
 
@@ -413,11 +419,841 @@ grow_vertical = 2
 script = ExtResource("6_oy6me")
 label = "Back"
 
-[connection signal="pressed" from="Main/Panel/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="Main/Panel/VBoxContainer/Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="Main/Panel/VBoxContainer/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="Main/Panel/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Main/Panel/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="Load" type="AspectRatioContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Load"]
+layout_mode = 2
+offset_left = 252.0
+offset_right = 900.0
+offset_bottom = 648.0
+texture = ExtResource("3_g7yqn")
+
+[node name="Back" parent="Load/NinePatchRect" instance=ExtResource("4_blpqc")]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 568.0
+offset_right = 366.0
+offset_bottom = 608.0
+scale = Vector2(1, 1)
+script = ExtResource("6_oy6me")
+label = "Back"
+
+[node name="Label" parent="Load/NinePatchRect/Back" index="0"]
+layout_mode = 1
+offset_left = -37.0
+offset_top = -13.0
+offset_right = 92.0
+offset_bottom = 21.0
+scale = Vector2(0.767037, 0.767037)
+text = "Back"
+
+[node name="Save1" type="Button" parent="Load/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 64.0
+offset_right = 548.0
+offset_bottom = 192.0
+
+[node name="SavePanel" type="NinePatchRect" parent="Load/NinePatchRect/Save1"]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="Load/NinePatchRect/Save1/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/NoSave"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="Load/NinePatchRect/Save1/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 32.0
+offset_right = 369.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="Load/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save2" type="Button" parent="Load/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 192.0
+offset_right = 548.0
+offset_bottom = 320.0
+
+[node name="SavePanel" type="NinePatchRect" parent="Load/NinePatchRect/Save2"]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="Load/NinePatchRect/Save2/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/NoSave"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="Load/NinePatchRect/Save2/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 32.0
+offset_right = 369.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="Load/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save3" type="Button" parent="Load/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 320.0
+offset_right = 548.0
+offset_bottom = 448.0
+
+[node name="SavePanel" type="NinePatchRect" parent="Load/NinePatchRect/Save3"]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="Load/NinePatchRect/Save3/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/NoSave"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="Load/NinePatchRect/Save3/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 32.0
+offset_right = 377.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="Load/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 80.0
+offset_right = 388.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save4" type="Button" parent="Load/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 432.0
+offset_right = 548.0
+offset_bottom = 560.0
+
+[node name="SavePanel" type="NinePatchRect" parent="Load/NinePatchRect/Save4"]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="Load/NinePatchRect/Save4/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/NoSave"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="Load/NinePatchRect/Save4/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 361.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="Load/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 80.0
+offset_right = 372.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="NewGame" type="AspectRatioContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NewGame"]
+layout_mode = 2
+offset_left = 252.0
+offset_right = 900.0
+offset_bottom = 648.0
+texture = ExtResource("3_g7yqn")
+
+[node name="Back" parent="NewGame/NinePatchRect" instance=ExtResource("4_blpqc")]
+layout_mode = 1
+offset_left = 228.0
+offset_top = 568.0
+offset_right = 366.0
+offset_bottom = 608.0
+scale = Vector2(1, 1)
+script = ExtResource("6_oy6me")
+label = "Back"
+
+[node name="Label" parent="NewGame/NinePatchRect/Back" index="0"]
+layout_mode = 1
+offset_left = -37.0
+offset_top = -13.0
+offset_right = 92.0
+offset_bottom = 21.0
+scale = Vector2(0.767037, 0.767037)
+text = "Back"
+
+[node name="Save1" type="Button" parent="NewGame/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 92.0
+offset_top = 64.0
+offset_right = 548.0
+offset_bottom = 192.0
+
+[node name="SavePanel" type="NinePatchRect" parent="NewGame/NinePatchRect/Save1"]
+layout_mode = 1
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="NewGame/NinePatchRect/Save1/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/NoSave"]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="NewGame/NinePatchRect/Save1/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 32.0
+offset_right = 369.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="NewGame/NinePatchRect/Save1/SavePanel/Save"]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save2" type="Button" parent="NewGame/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 92.0
+offset_top = 192.0
+offset_right = 548.0
+offset_bottom = 320.0
+
+[node name="SavePanel" type="NinePatchRect" parent="NewGame/NinePatchRect/Save2"]
+layout_mode = 1
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="NewGame/NinePatchRect/Save2/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/NoSave"]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="NewGame/NinePatchRect/Save2/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 32.0
+offset_right = 369.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="NewGame/NinePatchRect/Save2/SavePanel/Save"]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save3" type="Button" parent="NewGame/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 92.0
+offset_top = 320.0
+offset_right = 548.0
+offset_bottom = 448.0
+
+[node name="SavePanel" type="NinePatchRect" parent="NewGame/NinePatchRect/Save3"]
+layout_mode = 1
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="NewGame/NinePatchRect/Save3/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/NoSave"]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="NewGame/NinePatchRect/Save3/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 304.0
+offset_top = 32.0
+offset_right = 377.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="NewGame/NinePatchRect/Save3/SavePanel/Save"]
+layout_mode = 1
+offset_left = 304.0
+offset_top = 80.0
+offset_right = 388.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Save4" type="Button" parent="NewGame/NinePatchRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 92.0
+offset_top = 432.0
+offset_right = 548.0
+offset_bottom = 560.0
+
+[node name="SavePanel" type="NinePatchRect" parent="NewGame/NinePatchRect/Save4"]
+layout_mode = 1
+offset_left = -16.0
+offset_right = 456.0
+offset_bottom = 136.0
+texture = ExtResource("7_ara5t")
+
+[node name="NoSave" type="Control" parent="NewGame/NinePatchRect/Save4/SavePanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoSave" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/NoSave"]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 255.0
+offset_bottom = 82.0
+text = "No Save"
+
+[node name="Save" type="Control" parent="NewGame/NinePatchRect/Save4/SavePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lvl" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 58.0
+text = "Lvl:
+"
+
+[node name="LvlVal" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+text = "0"
+
+[node name="clicks" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 98.0
+text = "Clicks:  "
+
+[node name="clickVal" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 104.0
+offset_top = 72.0
+offset_right = 167.0
+offset_bottom = 98.0
+text = "0"
+
+[node name="playtimeVal" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 361.0
+offset_bottom = 58.0
+text = "playtime
+"
+
+[node name="dateSavedVal" type="Label" parent="NewGame/NinePatchRect/Save4/SavePanel/Save"]
+layout_mode = 1
+offset_left = 288.0
+offset_top = 80.0
+offset_right = 372.0
+offset_bottom = 106.0
+text = "date saved
+"
+
+[node name="Sure" type="Panel" parent="NewGame/NinePatchRect"]
+visible = false
+layout_mode = 0
+offset_right = 648.0
+offset_bottom = 648.0
+
+[node name="Label2" type="Label" parent="NewGame/NinePatchRect/Sure"]
+layout_mode = 1
+offset_left = 191.0
+offset_top = 167.0
+offset_right = 407.0
+offset_bottom = 245.0
+text = "You will overwrite the game 
+Are you sure you want to
+continue"
+horizontal_alignment = 1
+
+[node name="Ok" type="TextureButton" parent="NewGame/NinePatchRect/Sure"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 269.0
+offset_right = 350.0
+offset_bottom = 309.0
+texture_normal = ExtResource("8_yyk3j")
+texture_pressed = ExtResource("9_lnos0")
+texture_hover = ExtResource("10_d06fx")
+texture_disabled = ExtResource("11_2sda5")
+
+[node name="Label" type="Label" parent="NewGame/NinePatchRect/Sure/Ok"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 8.0
+offset_right = 82.0
+offset_bottom = 34.0
+text = "OK
+"
+
+[node name="Cancel" type="TextureButton" parent="NewGame/NinePatchRect/Sure"]
+layout_mode = 1
+offset_left = 239.0
+offset_top = 319.0
+offset_right = 353.0
+offset_bottom = 359.0
+texture_normal = ExtResource("8_yyk3j")
+texture_pressed = ExtResource("9_lnos0")
+texture_hover = ExtResource("10_d06fx")
+texture_disabled = ExtResource("11_2sda5")
+
+[node name="Label" type="Label" parent="NewGame/NinePatchRect/Sure/Cancel"]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 33.0
+text = "Cancel"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="Main/Control/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Settings/Panel/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Settings/Panel/Config/Settings/Sound/Sound/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Sound/Sound/Music/MusicMute" to="." method="_on_music_mute_toggled"]
@@ -429,3 +1265,18 @@ label = "Back"
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Display/Screen/Vsync" to="." method="_on_vsync_toggled"]
 [connection signal="toggled" from="Settings/Panel/Config/Settings/Display/Screen/Fps" to="." method="_on_fps_toggled"]
 [connection signal="pressed" from="HowToPlay/Panel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Load/NinePatchRect/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Load/NinePatchRect/Save1" to="." method="_on_load_save_pressed" binds= [1]]
+[connection signal="pressed" from="Load/NinePatchRect/Save2" to="." method="_on_load_save_pressed" binds= [2]]
+[connection signal="pressed" from="Load/NinePatchRect/Save3" to="." method="_on_load_save_pressed" binds= [3]]
+[connection signal="pressed" from="Load/NinePatchRect/Save4" to="." method="_on_load_save_pressed" binds= [4]]
+[connection signal="pressed" from="NewGame/NinePatchRect/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="NewGame/NinePatchRect/Save1" to="." method="_on_new_save_pressed" binds= [1]]
+[connection signal="pressed" from="NewGame/NinePatchRect/Save2" to="." method="_on_new_save_pressed" binds= [2]]
+[connection signal="pressed" from="NewGame/NinePatchRect/Save3" to="." method="_on_new_save_pressed" binds= [3]]
+[connection signal="pressed" from="NewGame/NinePatchRect/Save4" to="." method="_on_new_save_pressed" binds= [4]]
+[connection signal="pressed" from="NewGame/NinePatchRect/Sure/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="NewGame/NinePatchRect/Sure/Cancel" to="." method="_on_cancel_pressed"]
+
+[editable path="Load/NinePatchRect/Back"]
+[editable path="NewGame/NinePatchRect/Back"]

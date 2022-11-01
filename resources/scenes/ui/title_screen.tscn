@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bvsb16ekelc0y"]
+[gd_scene format=3 uid="uid://clf7su2q4rge1"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3

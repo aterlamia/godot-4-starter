@@ -2,7 +2,7 @@ extends Node
 
 var pauzed: bool = false
 
-var in_game: bool = false :
+var in_game: bool = false:
 	get:
 		return in_game
 	set(value):

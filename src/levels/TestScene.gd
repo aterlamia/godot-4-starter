@@ -7,10 +7,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func load() -> void:
+	test = get_node("/root/Global").game_state['clicks']
+	$Label.text = str(test)
 
+
+func _process(delta) -> void:
+	pass
 
 func _on_button_pressed():
 	test += 1
