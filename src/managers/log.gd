@@ -23,12 +23,18 @@ enum LogType {
 	LOG_ALL = 512 + 256 + 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1
 };
 
-var log_severity = LogSeverity.LOG_ALL
-var log_type = LogType.LOG_ALL
+var log_severity: int = LogSeverity.LOG_ALL
+var log_type: int     = LogType.LOG_ALL
 
-func init(log_level, log_type):
-	self.log_severity = log_level
-	self.log_type = log_type
+func _ready() -> void:
+	# This is a listener, no processing needed so turn off processing
+	set_process(false)
+	set_physics_process(false)
+	pass
+	
+func init(log_level_name: int, log_type_name: int):
+	log_severity = log_level_name
+	log_type = log_type_name
 
 # Get the severity name based on the severity value
 func get_severity_name(severity):
@@ -48,7 +54,7 @@ func get_severity_name(severity):
 			return "NONE"
 	
 
-	# Get the type name based	on the type value
+# Get the type name based	on the type value
 func get_type_name(type): 
 	match type:
 		LogType.LOG_UI:
@@ -75,22 +81,22 @@ func get_type_name(type):
 		_:
 			return "NONE"
 
-func log_error(message: String, type:=LogType.LOG_GENERAL):
+func log_error(message: String, type:=LogType.LOG_GENERAL) -> void:
 	if self.log_type & type:
 		self.print_log(message, LogSeverity.LOG_ERROR, type)
 
-func log_warning(message: String, type:=LogType.LOG_GENERAL):
+func log_warning(message: String, type:=LogType.LOG_GENERAL) -> void:
 	if self.log_type & type:
 		self.print_log(message, LogSeverity.LOG_WARN, type)
 
-func log_info(message: String, type:=LogType.LOG_GENERAL):
+func log_info(message: String, type:=LogType.LOG_GENERAL) -> void:
 	if self.log_type & type:
 		self.print_log(message, LogSeverity.LOG_INFO, type)
 
-func log_debug(message: String, type:=LogType.LOG_GENERAL):
+func log_debug(message: String, type:=LogType.LOG_GENERAL) -> void:
 	if self.log_type & type:
 		self.print_log(message, LogSeverity.LOG_DEBUG, type)
 
-func print_log(message:String, severity:=LogSeverity.LOG_ERROR, type:=LogType.LOG_GENERAL):
+func print_log(message:String, severity:=LogSeverity.LOG_ERROR, type:=LogType.LOG_GENERAL) -> void:
 		if self.log_severity & severity && self.log_type & type:
 			print(get_severity_name(severity) , "(", get_type_name(type) , "): ", message)

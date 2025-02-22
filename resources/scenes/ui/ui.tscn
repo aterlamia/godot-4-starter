@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://bvno61benbd2u"]
 
-[ext_resource type="Script" path="res://src/ui/ui.gd" id="1_oeybr"]
+[ext_resource type="Script" uid="uid://ojp5f0il8smj" path="res://src/ui/ui.gd" id="1_oeybr"]
 [ext_resource type="Texture2D" uid="uid://badrvk5us8ycx" path="res://assets/images/menu/background.png" id="1_v1vsa"]
 [ext_resource type="Theme" uid="uid://buf372q2bwhew" path="res://resources/theme/base_theme.tres" id="2_71ie5"]
 [ext_resource type="Texture2D" uid="uid://do8vnsrw301aj" path="res://assets/images/ui/panel.png" id="3_g7yqn"]
 [ext_resource type="PackedScene" uid="uid://danag68c0oepm" path="res://resources/scenes/ui/menu_button.tscn" id="4_blpqc"]
-[ext_resource type="Script" path="res://src/ui/back_button.gd" id="6_oy6me"]
+[ext_resource type="Script" uid="uid://bojak5cb65oqw" path="res://src/ui/back_button.gd" id="6_oy6me"]
 [ext_resource type="Texture2D" uid="uid://bw2u45ikk3w8k" path="res://assets/images/ui/Panel Border 1.png" id="7_ara5t"]
 [ext_resource type="Texture2D" uid="uid://deeisxhpjaihu" path="res://assets/images/ui/button2.png" id="8_yyk3j"]
 [ext_resource type="Texture2D" uid="uid://bcmy65amm2ukh" path="res://assets/images/ui/button2-press.png" id="9_lnos0"]
@@ -29,20 +29,12 @@ scale = Vector2(1, 1.00581)
 
 [node name="BlackBackground" type="ColorRect" parent="Background"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="BackgroundImage" type="TextureRect" parent="Background"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("1_v1vsa")
-ignore_texture_size = true
+expand_mode = 1
 
 [node name="Main" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -54,11 +46,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="Main"]
 layout_mode = 2
-anchors_preset = 0
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 576.0
-offset_bottom = 324.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Main/Control"]
 layout_mode = 0
@@ -80,67 +67,31 @@ theme_override_constants/separation = 25
 
 [node name="NewGame" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 366.0
-offset_bottom = 38.0
-grow_vertical = 2
-scale = Vector2(1, 1)
 label = "New game"
 
 [node name="Continue" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 63.0
-offset_right = 366.0
-offset_bottom = 101.0
-scale = Vector2(1, 1)
 label = "Continue"
 
 [node name="Load" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 126.0
-offset_right = 366.0
-offset_bottom = 164.0
-scale = Vector2(1, 1)
 label = "Load"
 
 [node name="Save" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 visible = false
 layout_mode = 2
-offset_left = 0.0
-offset_top = 213.0
-offset_right = 366.0
-offset_bottom = 280.0
-scale = Vector2(1, 1)
 label = "Save"
 
 [node name="HowToPlay" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 189.0
-offset_right = 366.0
-offset_bottom = 227.0
-scale = Vector2(1, 1)
 label = "How to play"
 
 [node name="Settings" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 252.0
-offset_right = 366.0
-offset_bottom = 290.0
-scale = Vector2(1, 1)
 label = "Settings"
 
 [node name="Exit" parent="Main/Control/VBoxContainer" instance=ExtResource("4_blpqc")]
 layout_mode = 2
-offset_left = 0.0
-offset_top = 315.0
-offset_right = 366.0
-offset_bottom = 353.0
-scale = Vector2(1, 1)
 label = "Exit"
 
 [node name="Settings" type="CenterContainer" parent="."]
@@ -158,13 +109,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Settings"]
-custom_minimum_size = Vector2i(400, 400)
+custom_minimum_size = Vector2(400, 400)
 layout_direction = 1
 layout_mode = 2
-offset_right = 400.0
-offset_bottom = 400.0
-grow_horizontal = 2
-grow_vertical = 2
 theme = ExtResource("2_71ie5")
 theme_override_styles/panel = SubResource("StyleBoxTexture_85yxa")
 
@@ -198,57 +145,31 @@ theme_override_constants/margin_bottom = 30
 
 [node name="Settings" type="TabContainer" parent="Settings/Panel/Config"]
 layout_mode = 2
-offset_left = 30.0
-offset_top = 50.0
-offset_right = 374.0
-offset_bottom = 346.0
-grow_horizontal = 2
-grow_vertical = 2
+current_tab = 0
 
 [node name="Sound" type="MarginContainer" parent="Settings/Panel/Config/Settings"]
 layout_mode = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 24.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
 
 [node name="Sound" type="VFlowContainer" parent="Settings/Panel/Config/Settings/Sound"]
 layout_mode = 2
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 334.0
-offset_bottom = 262.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Music" type="HBoxContainer" parent="Settings/Panel/Config/Settings/Sound/Sound"]
 layout_mode = 2
-offset_right = 344.0
-offset_bottom = 24.0
 theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Settings/Panel/Config/Settings/Sound/Sound/Music"]
 layout_mode = 2
-offset_top = 2.0
-offset_right = 47.0
-offset_bottom = 21.0
 text = "Music
 "
 
 [node name="MusicSlider" type="HSlider" parent="Settings/Panel/Config/Settings/Sound/Sound/Music"]
-custom_minimum_size = Vector2i(150, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-offset_left = 77.0
-offset_right = 227.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -50.0
@@ -256,33 +177,19 @@ max_value = 2.0
 
 [node name="MusicMute" type="CheckButton" parent="Settings/Panel/Config/Settings/Sound/Sound/Music"]
 layout_mode = 2
-offset_left = 257.0
-offset_right = 344.0
-offset_bottom = 24.0
 text = "Mute"
 
 [node name="Fx" type="HBoxContainer" parent="Settings/Panel/Config/Settings/Sound/Sound"]
 layout_mode = 2
-offset_top = 28.0
-offset_right = 344.0
-offset_bottom = 52.0
 theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Settings/Panel/Config/Settings/Sound/Sound/Fx"]
 layout_mode = 2
-offset_top = 2.0
-offset_right = 20.0
-offset_bottom = 21.0
 text = "Fx"
 
 [node name="FxSlider" type="HSlider" parent="Settings/Panel/Config/Settings/Sound/Sound/Fx"]
-custom_minimum_size = Vector2i(150, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-offset_left = 50.0
-offset_right = 227.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -50.0
@@ -291,34 +198,20 @@ value = 2.0
 
 [node name="FxMute" type="CheckButton" parent="Settings/Panel/Config/Settings/Sound/Sound/Fx"]
 layout_mode = 2
-offset_left = 257.0
-offset_right = 344.0
-offset_bottom = 24.0
 text = "Mute"
 
 [node name="Ui" type="HBoxContainer" parent="Settings/Panel/Config/Settings/Sound/Sound"]
 layout_mode = 2
-offset_top = 56.0
-offset_right = 344.0
-offset_bottom = 80.0
 theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Settings/Panel/Config/Settings/Sound/Sound/Ui"]
 layout_mode = 2
-offset_top = 2.0
-offset_right = 18.0
-offset_bottom = 21.0
 text = "Ui        
 "
 
 [node name="UiSlider" type="HSlider" parent="Settings/Panel/Config/Settings/Sound/Sound/Ui"]
-custom_minimum_size = Vector2i(150, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-offset_left = 48.0
-offset_right = 227.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -50.0
@@ -327,52 +220,30 @@ value = 2.0
 
 [node name="UiMute" type="CheckButton" parent="Settings/Panel/Config/Settings/Sound/Sound/Ui"]
 layout_mode = 2
-offset_left = 257.0
-offset_right = 344.0
-offset_bottom = 24.0
 text = "Mute"
 
 [node name="Display" type="MarginContainer" parent="Settings/Panel/Config/Settings"]
 visible = false
 layout_mode = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 24.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
 
 [node name="Screen" type="VFlowContainer" parent="Settings/Panel/Config/Settings/Display"]
 layout_mode = 2
-offset_left = 14.0
-offset_top = 10.0
-offset_right = 334.0
-offset_bottom = 262.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="FullScreen" type="CheckButton" parent="Settings/Panel/Config/Settings/Display/Screen"]
 layout_mode = 2
-offset_right = 140.0
-offset_bottom = 24.0
 text = "Fullscreen"
 
 [node name="Vsync" type="CheckButton" parent="Settings/Panel/Config/Settings/Display/Screen"]
 layout_mode = 2
-offset_top = 28.0
-offset_right = 140.0
-offset_bottom = 52.0
 text = "Vsync"
 
 [node name="Fps" type="CheckButton" parent="Settings/Panel/Config/Settings/Display/Screen"]
 layout_mode = 2
-offset_top = 56.0
-offset_right = 140.0
-offset_bottom = 80.0
 text = "ShowFps
 "
 
@@ -388,11 +259,6 @@ size_flags_vertical = 6
 
 [node name="Panel" type="Panel" parent="HowToPlay"]
 layout_mode = 2
-offset_left = 252.0
-offset_right = 900.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_stretch_ratio = 1.07
 theme = ExtResource("2_71ie5")
 theme_override_styles/panel = SubResource("StyleBoxTexture_85yxa")
@@ -431,9 +297,6 @@ size_flags_vertical = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Load"]
 layout_mode = 2
-offset_left = 252.0
-offset_right = 900.0
-offset_bottom = 648.0
 texture = ExtResource("3_g7yqn")
 
 [node name="Back" parent="Load/NinePatchRect" instance=ExtResource("4_blpqc")]
@@ -815,9 +678,6 @@ size_flags_vertical = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NewGame"]
 layout_mode = 2
-offset_left = 252.0
-offset_right = 900.0
-offset_bottom = 648.0
 texture = ExtResource("3_g7yqn")
 
 [node name="Back" parent="NewGame/NinePatchRect" instance=ExtResource("4_blpqc")]
@@ -1250,6 +1110,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [connection signal="pressed" from="Main/Control/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Main/Control/VBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Main/Control/VBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Main/Control/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

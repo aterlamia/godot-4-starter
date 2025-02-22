@@ -1,7 +1,7 @@
 extends Node
 
-@export var current_scene_index = 0
-var current_scene:  Node = null
+@export var current_scene_index: int = 0
+var current_scene:  Node             = null
 
 var logger
 

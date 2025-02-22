@@ -1,12 +1,11 @@
 @tool
 extends MenuBaseButton
 
-
-func _ready():
+func _ready() -> void:
 	super()
-	pass # Replace with function body.
+	pass
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	super(delta)
 	pass

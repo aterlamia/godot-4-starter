@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0mn06mvcasbs"]
 
-[ext_resource type="Texture2D" uid="uid://cd6hixyh8xkr" path="res://assets/images/ui/panel.png" id="1_3kl7g"]
-[ext_resource type="Texture2D" uid="uid://cd3jje5a6prcn" path="res://assets/images/ui/button3.png" id="2_587og"]
+[ext_resource type="Texture2D" uid="uid://do8vnsrw301aj" path="res://assets/images/ui/panel.png" id="1_3kl7g"]
+
+[sub_resource type="Resource" id="Resource_s1c30"]
+metadata/__load_path__ = "res://assets/images/ui/button3.png"
 
 [node name="SaveFileEntry" type="Node2D"]
 
@@ -17,4 +19,4 @@ stretch_mode = 0
 [node name="Sprite2D" type="Sprite2D" parent="TextureButton"]
 position = Vector2(84.546, 267.729)
 scale = Vector2(0.409445, 6.46539)
-texture = ExtResource("2_587og")
+texture = SubResource("Resource_s1c30")

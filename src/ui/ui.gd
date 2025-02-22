@@ -1,9 +1,10 @@
 extends CanvasLayer
 
-var global : Global = null
-var save  : Save  = null
-var new_game_slot = 0;
-# Called when the node enters the scene tree for the first time.
+var global: Global     = null
+var save: Save         = null
+var new_game_slot: int = 0;
+
+
 func _ready() -> void:
 	get_node("/root/Events").pauze.connect(_on_pauze)
 	get_node("/root/Events").game_started.connect(_on_game_started)
@@ -11,8 +12,9 @@ func _ready() -> void:
 	global = get_node("/root/Global")
 	save = get_node("/root/Save")
 	_setUiComponents()
-	
-	pass 
+
+	pass
+
 
 func _setUiComponents() -> void:
 	# set the volume values
@@ -24,16 +26,16 @@ func _setUiComponents() -> void:
 	get_node("Settings/Panel/Config/Settings/Sound/Sound/Music/MusicMute").button_pressed = global.config_data['mute_music']
 	get_node("Settings/Panel/Config/Settings/Sound/Sound/Fx/FxMute").button_pressed = global.config_data['mute_fx']
 	get_node("Settings/Panel/Config/Settings/Sound/Sound/Ui/UiMute").button_pressed = global.config_data['mute_ui']
-	
+
 	#set the display values
 	get_node("Settings/Panel/Config/Settings/Display/Screen/FullScreen").button_pressed = global.config_data['fullscreen']
 	get_node("Settings/Panel/Config/Settings/Display/Screen/Fps").button_pressed = global.config_data['fps']
 	get_node("Settings/Panel/Config/Settings/Display/Screen/Vsync").button_pressed = global.config_data['vsync']
-	
+
 	pass
-	
-	
-func _on_game_started(started) -> void:
+
+
+func _on_game_started(started: bool) -> void:
 	if started:
 		get_node("Main/Control/VBoxContainer/NewGame").visible = false
 		get_node("Main/Control/VBoxContainer/Continue").visible = false
@@ -44,9 +46,11 @@ func _on_game_started(started) -> void:
 		get_node("Main/Control/VBoxContainer/Save").visible = false
 	pass
 
+
 func _on_config_loaded() -> void:
 	_setUiComponents()
-	
+
+
 func _on_pauze(state: bool) -> void:
 	self.set_visible(state)
 	if state == false:
@@ -54,6 +58,7 @@ func _on_pauze(state: bool) -> void:
 	else:
 		get_node("/root/Events").on_play_music("MenuMusic")
 	pass
+
 
 func _on_music_slider_value_changed(value: float) -> void:
 	global.config_data['volume_music'] = value
@@ -64,17 +69,17 @@ func _on_music_slider_value_changed(value: float) -> void:
 func _on_music_mute_toggled(button_pressed: bool) -> void:
 	global.config_data['mute_music'] = button_pressed
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), button_pressed)
-	pass 
+	pass
 
 
 func _on_full_screen_toggled(button_pressed: bool)-> void:
 	if(button_pressed):
 		global.config_data['fullscreen'] = true
 		get_tree().root.mode = Window.MODE_FULLSCREEN
-	else: 
+	else:
 		global.config_data['fullscreen'] = false
 		get_tree().root.mode = Window.MODE_WINDOWED
-	pass 
+	pass
 
 
 func _on_back_pressed() -> void:
@@ -94,14 +99,15 @@ func _on_settings_pressed() -> void:
 	$Main.visible = false
 	pass # Replace with function body.
 
+
 func _on_vsync_toggled(button_pressed) -> void:
 	if(button_pressed):
 		global.config_data['vsync'] = true
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-	else: 
+	else:
 		global.config_data['vsync'] = true
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	pass 
+	pass
 
 
 func _on_fps_toggled(button_pressed) -> void:
@@ -127,10 +133,12 @@ func _on_ui_slider_value_changed(value) -> void:
 	global.config_data['volume_ui'] = value
 	pass
 
+
 func _on_ui_mute_toggled(button_pressed) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("ui"), button_pressed)
 	global.config_data['mute_ui'] = button_pressed
 	pass
+
 
 func _on_new_game_pressed() -> void:
 	hideAll()
@@ -140,6 +148,7 @@ func _on_new_game_pressed() -> void:
 			setNewData(i, save_data)
 	$NewGame.visible = true
 	pass
+
 
 func _on_save_pressed():
 	save._save_game()
@@ -153,10 +162,12 @@ func hideAll():
 	$HowToPlay.visible = false
 	$NewGame.visible = false
 
+
 func resetToMain():
 	hideAll()
 	$Main.visible = true
 	pass
+
 
 func _on_load_pressed():
 	hideAll()
@@ -166,32 +177,34 @@ func _on_load_pressed():
 		var save_data = save.loadSave(i)
 		if save_data != null:
 			setSaveData(i, save_data)
-	pass 
+	pass
 
 
 func setSaveData(slot: int, save_data) -> void:
-	var panel = get_node("Load/NinePatchRect/Save%s/SavePanel" % slot)
+	var panel: Node = get_node("Load/NinePatchRect/Save%s/SavePanel" % slot)
 	panel.get_node("NoSave").visible = false
 	panel.get_node("Save").visible = true
-	panel.get_node("Save/LvlVal").text = str(save_data['level'])
-	panel.get_node("Save/clickVal").text = str(save_data['clicks'])
-	panel.get_node("Save/playtimeVal").text = save_data['date']
-	panel.get_node("Save/dateSavedVal").text = save_data['created']
-	
-	pass 
+	panel.get_node("Save/LvlVal").text = str(save_data['level'] if save_data.has('level') else "unknown")
+	panel.get_node("Save/clickVal").text = str(save_data['clicks'] if save_data.has('clicks') else "unknown")
+	panel.get_node("Save/playtimeVal").text = save_data['date'] if save_data.has('date') else "unknown"
+	panel.get_node("Save/dateSavedVal").text = save_data['created'] if save_data.has('created') else "unknown"
+
+	pass
+
 
 func setNewData(slot: int, save_data) -> void:
-	var panel = get_node("NewGame/NinePatchRect/Save%s/SavePanel" % slot)
+	var panel: Node = get_node("NewGame/NinePatchRect/Save%s/SavePanel" % slot)
 	panel.get_node("NoSave").visible = false
 	panel.get_node("Save").visible = true
-	panel.get_node("Save/LvlVal").text = str(save_data['level'])
-	panel.get_node("Save/clickVal").text = str(save_data['clicks'])
-	panel.get_node("Save/playtimeVal").text = save_data['date']
-	panel.get_node("Save/dateSavedVal").text = save_data['created']
-	
-	pass 
-	
-func _on_load_save_pressed(extra_arg_0):
+	panel.get_node("Save/LvlVal").text = str(save_data['level'] if save_data.has('level') else "unknown")
+	panel.get_node("Save/clickVal").text = str(save_data['clicks'] if save_data.has('clicks') else "unknown")
+	panel.get_node("Save/playtimeVal").text = save_data['date'] if save_data.has('date') else "unknown"
+	panel.get_node("Save/dateSavedVal").text = save_data['created'] if save_data.has('created') else "unknown"
+
+	pass
+
+
+func _on_load_save_pressed(extra_arg_0) -> void:
 	var save_data = save.loadSave(extra_arg_0)
 	if save_data != null:
 		global.set_game_data(save_data['level'], "level")
@@ -202,15 +215,16 @@ func _on_load_save_pressed(extra_arg_0):
 		self.set_visible(false)
 		global.in_game = true
 		resetToMain()
-	pass # Replace with function body.
+	pass
 
-func _on_new_save_pressed(extra_arg_0):
+
+func _on_new_save_pressed(extra_arg_0: int) -> void:
 	var save_data = save.loadSave(extra_arg_0)
 	if save_data != null:
 		new_game_slot = extra_arg_0
 		get_node("NewGame/NinePatchRect/Sure").visible = true
 		return
-		
+
 	global.set_game_data(1, "level")
 	global.set_game_data(0, "clicks")
 	get_node("/root/Events").on_scene_restarted(1)
@@ -220,9 +234,10 @@ func _on_new_save_pressed(extra_arg_0):
 	global.in_game = true
 	resetToMain()
 	save._save_game()
-	pass # Replace with function body.
-	
-func _on_ok_pressed():
+	pass
+
+
+func _on_ok_pressed() -> void:
 	var save_data = save.loadSave(new_game_slot)
 	if save_data != null:
 		global.set_game_data(1, "level")
@@ -239,7 +254,21 @@ func _on_ok_pressed():
 	pass # Replace with function body.
 
 
-func _on_cancel_pressed():
+func _on_cancel_pressed() -> void:
 	get_node("NewGame/NinePatchRect/Sure").visible = false
 	new_game_slot = 0
 	pass # Replace with function body.
+
+func _on_continue_pressed():
+	var saveItem = -1
+	var saveTime = -1
+	for i in range(1, 5):
+		var save_data = save.loadSave(i)
+		if save_data != null:
+			var date_time = Time.get_unix_time_from_datetime_string(save_data['date'])
+			if(date_time > saveTime):
+				saveTime = date_time
+				saveItem = i
+	if saveItem != -1:
+		_on_load_save_pressed(saveItem)
+	pass 

@@ -22,7 +22,7 @@ https://wenrexa.itch.io/holoui
 ## Menu
 Menu with some buttons has been added to load/start a new game and for settings
 
-Note! there is a button conntinue and a button "How to play" these are not connected yet
+Note! there is a  button "How to play" its are not connected yet
 
 ## Logger
 On the main node you have the option to set what level of log you want to see and what kind of log

@@ -8,23 +8,13 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "TextureButton",
-"class": &"MenuBaseButton",
-"language": &"GDScript",
-"path": "res://src/ui/menu_button.gd"
-}]
-_global_script_class_icons={
-"MenuBaseButton": ""
-}
-
 [application]
 
 config/name="Starter"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
-boot_splash/image="res://assets/images/splash/splash.png"
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://assets/images/splash/splash.png"
 config/icon="res://icon.svg"
 
 [audio]
@@ -42,3 +32,7 @@ Save="*res://src/managers/save.gd"
 
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Starter"
